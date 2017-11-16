@@ -48,11 +48,11 @@ RUN set -x \
 	\
 	&& curl -fSL -o janus.tar.gz "https://github.com/meetecho/janus-gateway/archive/v$JANUS_VERSION.tar.gz" \
 	&& echo "$JANUS_SHA256 *janus.tar.gz" | sha256sum -c - \
-	&& mkdir -p "/usr/src/janus-$JANUS_VERSION" \
-	&& tar -xzf janus.tar.gz -C "/usr/src/janus-$JANUS_VERSION" --strip-components=1 \
+	&& mkdir -p /usr/src/janus \
+	&& tar -xzf janus.tar.gz -C /usr/src/janus --strip-components=1 \
 	&& rm janus.tar.gz \
 	\
-	&& cd "/usr/src/janus-$JANUS_VERSION" \
+	&& cd /usr/src/janus \
 	\
 	&& ./autogen.sh \
 	&& ./configure \
@@ -62,7 +62,7 @@ RUN set -x \
 	&& make install \
 	\
 	&& cd / \
-	&& rm -rf "/usr/src/janus-$JANUS_VERSION" \
+	&& rm -rf /usr/src/janus \
 	&& rename 's/\.sample$//' /usr/local/etc/janus/*.sample \
 	\
 	&& apt-mark manual \
