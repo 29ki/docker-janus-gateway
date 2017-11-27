@@ -44,7 +44,7 @@ RUN set -x \
 	&& apt-get update && apt-get install -y --no-install-recommends \
 	  $buildDeps \
 	  gosu \
-	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -r /var/lib/apt/lists/* \
 	\
 	&& curl -fSL -o janus.tar.gz "https://github.com/meetecho/janus-gateway/archive/v$JANUS_VERSION.tar.gz" \
 	&& echo "$JANUS_SHA256 *janus.tar.gz" | sha256sum -c - \
@@ -62,7 +62,7 @@ RUN set -x \
 	&& make install \
 	\
 	&& cd / \
-	&& rm -rf /usr/src/janus \
+	&& rm -r /usr/src/janus \
 	&& rename 's/\.sample$//' /usr/local/etc/janus/*.sample \
 	\
 	&& apt-mark manual \
