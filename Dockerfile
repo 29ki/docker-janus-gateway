@@ -14,6 +14,10 @@ RUN set -x \
 	\
 	&& groupadd -r janus && useradd -r -g janus janus \
 
+	&& runDeps=' \
+		gettext-base \
+		gosu \
+	' \
 	&& buildDeps=' \
 		autoconf \
 		automake \
@@ -42,8 +46,8 @@ RUN set -x \
 		rename \
 	' \
 	&& apt-get update && apt-get install -y --no-install-recommends \
-	  $buildDeps \
-	  gosu \
+		$buildDeps \
+		$runDeps \
 	&& rm -r /var/lib/apt/lists/* \
 	\
 	&& curl -fSL -o janus.tar.gz "https://github.com/meetecho/janus-gateway/archive/v$JANUS_VERSION.tar.gz" \
