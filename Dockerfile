@@ -1,7 +1,7 @@
 #
 # Janus docker image
 
-FROM debian:buster-slim
+FROM debian:buster
 
 MAINTAINER Örjan Fors <orion@29k.org>
 
