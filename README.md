@@ -12,10 +12,16 @@ There are multiple ways to set Janus server configuration.
 
 * Use a custom config file in `/usr/local/etc/janus`. The entry point will
   automatically expand any environmental variables found in configuration
-  files this directory.
+  files in this directory.
 
 * Set options directly on the run line. The entry point will pass all arguments
   you pass to it to the janus executable.
+
+## Master
+
+There is a branch in this repository called `janus-master` which is mapped to
+the `master` tag. These images are built without verifying the integrity of the
+source.
 
 # Resources
 
