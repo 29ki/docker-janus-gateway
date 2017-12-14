@@ -7,7 +7,7 @@ MAINTAINER Örjan Fors <orion@29k.org>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV JANUS_VERSION 0.2.5
+ENV JANUS_VERSION v0.2.5
 ENV JANUS_SHA256 09610dc02ff0a1f23af0397baaa26a3cd88b3742d35b2e49849f099885cdcf08
 
 RUN set -x \
@@ -50,8 +50,8 @@ RUN set -x \
 		$runDeps \
 	&& rm -r /var/lib/apt/lists/* \
 	\
-	&& curl -fSL -o janus.tar.gz "https://github.com/meetecho/janus-gateway/archive/v$JANUS_VERSION.tar.gz" \
-	&& echo "$JANUS_SHA256 *janus.tar.gz" | sha256sum -c - \
+	&& curl -fSL -o janus.tar.gz "https://github.com/meetecho/janus-gateway/archive/$JANUS_VERSION.tar.gz" \
+	&& test -z "$JANUS_SHA256" && true || echo "$JANUS_SHA256 *janus.tar.gz" | sha256sum -c - \
 	&& mkdir -p /usr/src/janus \
 	&& tar -xzf janus.tar.gz -C /usr/src/janus --strip-components=1 \
 	&& rm janus.tar.gz \
